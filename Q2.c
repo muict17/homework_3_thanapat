@@ -1,10 +1,11 @@
 #include <stdio.h>
 int main(){
     int n;
-    int i,min,max,sum=0,expectedsum=0,missingnum;
+    int i,j,min,max,count;
     printf("Input N amount : ");
     scanf("%d",&n);
     int array[n];
+    int expectedarray[]={0};
     printf("Input numbers : ");
     scanf("%d",&array[0]);
     min=array[0],max=array[0];
@@ -16,18 +17,20 @@ int main(){
         if(array[i]>max){
             max=array[i];
         }
-        sum += array[i];
     }
-    sum = sum+array[0];
+    printf("The missing number is : ");
     for(i=min;i<=max;i++){
-        expectedsum += i;
+        count = 0;
+        for(j=0;j<n;j++){
+            if(array[j]==i){
+                count++;
+            }
+        }
+        if(count==0){
+            printf("%d ",i);
+        }
     }
-    missingnum = expectedsum - sum;
-    if(missingnum==0){
-        printf("No missing number\n");
-    }else{
-        printf("The missing number is : %d\n",missingnum);
-    }
-    
+    printf("\n");
+   
     return 0;
 }
